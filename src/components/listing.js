@@ -1,3 +1,6 @@
+import RemoveIcon from "@mui/icons-material/Remove";
+import { Button, Checkbox } from "@mui/material";
+
 const Listing = (props) => {
   const { items = [], onCheck, onRemove } = props;
 
@@ -12,12 +15,12 @@ const Listing = (props) => {
           <a href={item.link} target="_blank" rel="noopener noreferrer">
             {item.name}
           </a>
-          <input
-            type="checkbox"
-            checked={item.checked}
-            onChange={() => onCheck(item.id)}
-          />
-          <button onClick={() => onRemove(item.id)}>Remove</button>
+
+          <Checkbox checked={item.checked} onChange={() => onCheck(item.id)} />
+
+          <Button onClick={() => onRemove(item.id)} startIcon={<RemoveIcon />}>
+            Remove
+          </Button>
         </li>
       ))}
     </ul>

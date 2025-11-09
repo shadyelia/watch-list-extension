@@ -1,26 +1,33 @@
+import AddIcon from "@mui/icons-material/Add";
+import { Button, TextField } from "@mui/material";
+import { v4 as uuidv4 } from "uuid";
+
 const AddingListItem = (props) => {
-    const { onAdd } = props;
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const name = e.target[0].value.trim();
-        const link = e.target[1].value.trim();
+  const { onAdd } = props;
 
-        onAdd({ name, link, checked: false });
-        e.target[0].value = '';
-        e.target[1].value = '';
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target[0].value?.trim();
+    const link = e.target[2].value?.trim();
 
-    return (
-        <div>
-            <h3>Add New Item</h3>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Name" required />
-                <input type="text" placeholder="Link" />
-                <button type="submit">Add</button>
-            </form>
-        </div>
-    )
+    onAdd({ id: uuidv4(), name, link, checked: false });
+    e.target[0].value = "";
+    e.target[2].value = "";
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+
+        <TextField label="Name" variant="outlined" />
+        <TextField label="Link" variant="outlined" />
+        
+        <Button type="submit" startIcon={<AddIcon />}>
+          Add
+        </Button>
+      </form>
+    </div>
+  );
 };
 
 export default AddingListItem;
