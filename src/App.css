@@ -1,20 +1,44 @@
+.app-container {
+  font-family: sans-serif;
+  padding: 1rem;
+  width: 20rem;
+}
+
+.no-items {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+}
+
 ul {
+  border: 1px solid #ccc;
+  height: 16rem;
+  overflow-y: auto;
+
   list-style-type: none;
   padding: 0;
 
   li {
     display: flex;
     align-items: center;
-    padding: 8px 12px;
+    padding: 0.5rem 1rem;
+    gap: 1;
   }
 
-  .checked{
+  .item-content {
+    flex-grow: 1;
+    gap: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .checked {
     text-decoration: line-through;
     color: #888;
   }
 
   a {
-    margin-right: 12px;
+    margin-right: 1rem;
     text-decoration: none;
     color: #007bff;
   }
@@ -24,6 +48,6 @@ ul {
   }
 
   input[type="checkbox"] {
-    margin-right: 12px;
+    margin-right: 1rem;
   }
 }

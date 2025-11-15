@@ -1,20 +1,16 @@
 {
   "manifest_version": 3,
-  "short_name": "Watch list App",
-  "name": "Watch list App",
+  "short_name": "Watch list",
+  "name": "Watch list",
   "version": "1.0.0",
+  "permissions": ["storage"],
   "action": {
     "default_popup": "index.html",
     "default_icon": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
+      "16": "icon.png"
     }
   },
-  "permissions": [
-    "storage"
-  ],
-  "background": {
-    "service_worker": "background.js"
+  "icons": {
+    "16": "icon.png"
   }
 }

@@ -5,14 +5,14 @@ const Listing = (props) => {
   const { items = [], onCheck, onRemove } = props;
 
   if (!items.length) {
-    return <div>No items available.</div>;
+    return <div className="no-items">No items available.</div>;
   }
 
   return (
     <ul>
       {items.map((item, index) => (
         <li key={item.id}>
-          <div className={item.checked ? "checked" : ""}>
+          <div className={"item-content " + (item.checked ? "checked" : "")}>
             <Checkbox
               checked={item.checked}
               onChange={() => onCheck(item.id)}
@@ -21,13 +21,14 @@ const Listing = (props) => {
             <span>{index + 1}. </span>
 
             {item.link ? (
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
+              <a href={item.link} target="_blank" rel="noreferrer">
                 {item.name}
               </a>
             ) : (
               <span>{item.name}</span>
             )}
           </div>
+
           <Button onClick={() => onRemove(item.id)} startIcon={<RemoveIcon />}>
             Remove
           </Button>

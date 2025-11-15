@@ -7,10 +7,15 @@ const AddingListItem = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const name = e.target[0].value?.trim();
-    const link = e.target[2].value?.trim();
+    const name = e.target[0].value
+    if (!name) {
+      return;
+    }
+
+    const link = e.target[2].value;
 
     onAdd({ id: uuidv4(), name, link, checked: false });
+  
     e.target[0].value = "";
     e.target[2].value = "";
   };
@@ -18,10 +23,9 @@ const AddingListItem = (props) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <TextField placeholder="Name" variant="outlined"  required/>
+        <TextField placeholder="Link" variant="outlined" />
 
-        <TextField label="Name" variant="outlined" />
-        <TextField label="Link" variant="outlined" />
-        
         <Button type="submit" startIcon={<AddIcon />}>
           Add
         </Button>
