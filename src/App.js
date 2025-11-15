@@ -4,7 +4,7 @@ import Listing from "./components/listing";
 import AddingListItem from "./components/addingListItem";
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState( localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []);
 
   const handleCheck = (id) => {
     const updatedItems = [...items];
@@ -14,16 +14,21 @@ function App() {
     }
 
     updatedItems[itemIndex].checked = !updatedItems[itemIndex].checked;
-    setItems(updatedItems);
+    updateItems(updatedItems);
   };
 
   const handleRemove = (id) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    updateItems(items.filter((item) => item.id !== id));
   };
 
   const handleAdd = (newItem) => {
-    setItems((prevItems) => [...prevItems, newItem]);
+    updateItems([...items, newItem]);
   };
+
+  const updateItems = (newItems) => {
+    setItems(newItems);
+    localStorage.setItem("items", JSON.stringify(newItems));  
+  }
 
   return (
     <div className="App">
