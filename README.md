@@ -60,4 +60,4 @@ Your data is stored securely using Chrome Storage and **never leaves your device
 - Everything stays inside your browser using chrome.storage.local
 
 Full privacy policy:
-👉 https://shadyelia.github.io/watch-list-extension/privacy-policy.html
+👉 https://shadyelia.github.io/watch-list-extension/
