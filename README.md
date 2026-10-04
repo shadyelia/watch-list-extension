@@ -5,6 +5,14 @@ Your data is stored securely using Chrome Storage and **never leaves your device
 
 ---
 
+## 📝 Changelog
+
+### v1.1.0
+- Updated the UI
+- Added edit functionality
+
+---
+
 ## ✨ Features
 
 - Add, edit, and remove items you want to track  

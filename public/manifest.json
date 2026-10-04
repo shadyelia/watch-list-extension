@@ -2,8 +2,10 @@
   "manifest_version": 3,
   "short_name": "Watch list",
   "name": "Watch list",
-  "version": "1.0.0",
-  "permissions": ["storage"],
+  "version": "1.1.0",
+  "permissions": [
+    "storage"
+  ],
   "action": {
     "default_popup": "index.html",
     "default_icon": {
