@@ -2,7 +2,7 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Button, TextField, ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
  * Each entry has a value, label, and the MUI icon component to render.
  */
 export const ITEM_TYPES = [
-  { value: "none",   label: "None",   Icon: RemoveCircleOutlineIcon },
+  { value: "none",   label: "None",   Icon: QuestionMarkIcon },
   { value: "movie",  label: "Movie",  Icon: LocalMoviesIcon },
   { value: "series", label: "Series", Icon: LiveTvIcon },
 ];

@@ -51,13 +51,8 @@ const Listing = (props) => {
             )}
           </div>
 
-          <Button onClick={() => onEdit(item.id)} startIcon={<EditIcon />}>
-            Edit
-          </Button>
-
-          <Button onClick={() => onRemove(item.id)} startIcon={<RemoveIcon />}>
-            Remove
-          </Button>
+          <Button onClick={() => onEdit(item.id)} startIcon={<EditIcon />} />
+          <Button onClick={() => onRemove(item.id)} startIcon={<RemoveIcon />} />
         </li>
       ))}
     </ul>
