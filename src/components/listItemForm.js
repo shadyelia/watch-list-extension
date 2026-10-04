@@ -63,55 +63,65 @@ const ListItemForm = (props) => {
   };
 
   return (
-    <div>
+    <div className="form-wrapper">
       <form onSubmit={handleSubmit}>
-        <TextField
-          placeholder="Name"
-          variant="outlined"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          label={isEditing ? "Edit Name" : "Name"}
-        />
-        <TextField
-          placeholder="Link"
-          variant="outlined"
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
-          label={isEditing ? "Edit Link" : "Link"}
-        />
-
-        <ToggleButtonGroup
-          value={itemType}
-          exclusive
-          onChange={(_, newType) => {
-            // MUI passes null when same button is clicked again – keep current value
-            if (newType !== null) setItemType(newType);
-          }}
-          aria-label="Item type"
-          size="small"
-        >
-          {ITEM_TYPES.map(({ value, label, Icon }) => (
-            <ToggleButton key={value} value={value} aria-label={label}>
-              <Tooltip title={label}>
-                <Icon fontSize="small" />
-              </Tooltip>
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-
-        <Button
-          type="submit"
-          startIcon={isEditing ? <EditIcon /> : <AddIcon />}
-        >
-          {isEditing ? "Save" : "Add"}
-        </Button>
-
         {isEditing && (
-          <Button type="button" onClick={handleCancel}>
-            Cancel
-          </Button>
+          <div className="editing-badge">
+            <EditIcon fontSize="inherit" /> Editing Item
+          </div>
         )}
+        <div className="form-row">
+          <TextField
+            placeholder="Name"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            label={isEditing ? "Edit Name" : "Name"}
+          />
+          <TextField
+            placeholder="Link (optional)"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+            label={isEditing ? "Edit Link" : "Link"}
+          />
+        </div>
+
+        <div className="form-actions">
+          <ToggleButtonGroup
+            value={itemType}
+            exclusive
+            onChange={(_, newType) => {
+              if (newType !== null) setItemType(newType);
+            }}
+            aria-label="Item type"
+            size="small"
+          >
+            {ITEM_TYPES.map(({ value, label, Icon }) => (
+              <ToggleButton key={value} value={value} aria-label={label}>
+                <Tooltip title={label}>
+                  <Icon fontSize="small" />
+                </Tooltip>
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+
+          <div className="form-actions-right">
+            {isEditing && (
+              <Button type="button" onClick={handleCancel} color="inherit">
+                Cancel
+              </Button>
+            )}
+            <Button
+              type="submit"
+              variant="contained"
+              color={isEditing ? "secondary" : "primary"}
+              startIcon={isEditing ? <EditIcon /> : <AddIcon />}
+              disableElevation
+            >
+              {isEditing ? "Save" : "Add"}
+            </Button>
+          </div>
+        </div>
       </form>
     </div>
   );

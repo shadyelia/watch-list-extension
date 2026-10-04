@@ -1,53 +1,148 @@
+/* ── App Container ─────────────────────────────────────────────── */
 .app-container {
-  font-family: sans-serif;
-  padding: 1rem;
-  width: 20rem;
+  width: 22rem;
+  min-height: 28rem;
+  padding: 1rem 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: linear-gradient(165deg, #131520 0%, #0f1118 100%);
 }
 
-.no-items {
-  text-align: center;
-  color: #666;
-  padding: 1rem;
+/* ── Header / Search ───────────────────────────────────────────── */
+.search-bar {
+  position: relative;
 }
 
-ul {
-  border: 1px solid #ccc;
-  height: 16rem;
+.search-bar .MuiTextField-root {
+  width: 100%;
+}
+
+/* ── List ──────────────────────────────────────────────────────── */
+.item-list {
+  flex: 1;
+  min-height: 0;
+  max-height: 20rem;
   overflow-y: auto;
-
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
-  li {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    gap: 1;
-  }
+.item-list li {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
 
-  .item-content {
-    flex-grow: 1;
-    gap: 1;
-    display: flex;
-    align-items: center;
-  }
+.item-list li:hover {
+  background: rgba(167, 139, 250, 0.06);
+}
 
-  .checked {
-    text-decoration: line-through;
-    color: #888;
-  }
+.item-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0;              /* allow text truncation */
+}
 
-  a {
-    margin-right: 1rem;
-    text-decoration: none;
-    color: #007bff;
-  }
+.item-content span,
+.item-content a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-  a:hover {
-    text-decoration: underline;
-  }
+.item-content a {
+  color: #c4b5fd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
 
-  input[type="checkbox"] {
-    margin-right: 1rem;
-  }
+.item-content a:hover {
+  color: #a78bfa;
+  text-decoration: underline;
+}
+
+.item-content.checked {
+  text-decoration: line-through;
+  opacity: 0.45;
+}
+
+/* ── Empty state ───────────────────────────────────────────────── */
+.no-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: #6b7280;
+  font-size: 0.85rem;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+/* ── Form ──────────────────────────────────────────────────────── */
+.form-wrapper {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+
+.form-wrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.form-row .MuiTextField-root {
+  flex: 1;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.form-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Action icon buttons in list rows */
+.item-actions {
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.item-list li:hover .item-actions {
+  opacity: 1;
+}
+
+/* ── Misc ──────────────────────────────────────────────────────── */
+.editing-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #a78bfa;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }

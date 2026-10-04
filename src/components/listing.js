@@ -1,6 +1,6 @@
 import EditIcon from "@mui/icons-material/Edit";
-import RemoveIcon from "@mui/icons-material/Remove";
-import { Button, Checkbox, Tooltip } from "@mui/material";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { IconButton, Checkbox, Tooltip } from "@mui/material";
 import { ITEM_TYPES } from "./listItemForm";
 
 /**
@@ -29,7 +29,7 @@ const Listing = (props) => {
   }
 
   return (
-    <ul>
+    <ul className="item-list">
       {items.map((item, index) => (
         <li key={item.id}>
           <div className={"item-content " + (item.checked ? "checked" : "")}>
@@ -50,9 +50,18 @@ const Listing = (props) => {
               <span>{item.name}</span>
             )}
           </div>
-
-          <Button onClick={() => onEdit(item.id)} startIcon={<EditIcon />} />
-          <Button onClick={() => onRemove(item.id)} startIcon={<RemoveIcon />} />
+          <div className="item-actions">
+            <Tooltip title="Edit">
+              <IconButton onClick={() => onEdit(item.id)} size="small" color="primary">
+                <EditIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Remove">
+              <IconButton onClick={() => onRemove(item.id)} size="small" color="error">
+                <DeleteOutlineIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </div>
         </li>
       ))}
     </ul>
