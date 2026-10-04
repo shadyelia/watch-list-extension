@@ -1,16 +1,20 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Listing from "./components/listing";
-import AddingListItem from "./components/addingListItem";
+import ListItemForm from "./components/listItemForm";
 import { loadInputs, saveInputs } from "./storage";
 import SearchBar from "./components/searchBar";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [items, setItems] = useState([]);
-  const filteredItems = items.filter(item =>
+  const [editingItemId, setEditingItemId] = useState(null);
+
+  const filteredItems = items.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const editItem = items.find((item) => item.id === editingItemId) ?? null;
 
   useEffect(() => {
     loadInputs().then(setItems);
@@ -35,6 +39,23 @@ function App() {
     await updateItems([...items, newItem]);
   };
 
+  const handleEditStart = (id) => {
+    setEditingItemId(id);
+  };
+
+  const handleEditSave = async (updatedItem) => {
+    const updatedItems = items.map((item) =>
+      item.id === updatedItem.id ? updatedItem : item
+    );
+    setEditingItemId(null);
+    await updateItems(updatedItems);
+  };
+
+
+  const handleCancelEdit = () => {
+    setEditingItemId(null);
+  };
+
   const updateItems = async (newItems) => {
     setItems(newItems);
     await saveInputs(newItems);
@@ -43,8 +64,18 @@ function App() {
   return (
     <div className="app-container">
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Listing items={filteredItems} onCheck={handleCheck} onRemove={handleRemove} />
-      <AddingListItem onAdd={handleAdd} />
+      <Listing
+        items={filteredItems}
+        onCheck={handleCheck}
+        onRemove={handleRemove}
+        onEdit={handleEditStart}
+      />
+      <ListItemForm
+        onAdd={handleAdd}
+        onEdit={handleEditSave}
+        editItem={editItem}
+        onCancelEdit={handleCancelEdit}
+      />
     </div>
   );
 }
