@@ -36,9 +36,13 @@ const Listing = (props) => {
             <Checkbox
               checked={item.checked}
               onChange={() => onCheck(item.id)}
+              size="small"
+              sx={{ padding: "4px", marginRight: "4px" }}
             />
 
-            <span>{index + 1}. </span>
+            <span style={{ minWidth: "20px", color: "#9ca3af", fontSize: "0.85rem" }}>
+              {index + 1}
+            </span>
 
             <TypeIcon itemType={item.itemType} />
 
