@@ -51,21 +51,20 @@
   min-width: 0;              /* allow text truncation */
 }
 
-.item-content span,
-.item-content a {
+.item-name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.item-content a {
+a.item-name {
   color: #c4b5fd;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.15s ease;
 }
 
-.item-content a:hover {
+a.item-name:hover {
   color: #a78bfa;
   text-decoration: underline;
 }

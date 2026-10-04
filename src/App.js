@@ -56,6 +56,30 @@ function App() {
     setEditingItemId(null);
   };
 
+  const handleMoveUp = async (id) => {
+    const index = items.findIndex((item) => item.id === id);
+    if (index > 0) {
+      const updatedItems = [...items];
+      [updatedItems[index - 1], updatedItems[index]] = [
+        updatedItems[index],
+        updatedItems[index - 1],
+      ];
+      await updateItems(updatedItems);
+    }
+  };
+
+  const handleMoveDown = async (id) => {
+    const index = items.findIndex((item) => item.id === id);
+    if (index !== -1 && index < items.length - 1) {
+      const updatedItems = [...items];
+      [updatedItems[index + 1], updatedItems[index]] = [
+        updatedItems[index],
+        updatedItems[index + 1],
+      ];
+      await updateItems(updatedItems);
+    }
+  };
+
   const updateItems = async (newItems) => {
     setItems(newItems);
     await saveInputs(newItems);
@@ -69,6 +93,8 @@ function App() {
         onCheck={handleCheck}
         onRemove={handleRemove}
         onEdit={handleEditStart}
+        onMoveUp={handleMoveUp}
+        onMoveDown={handleMoveDown}
       />
       <ListItemForm
         onAdd={handleAdd}
