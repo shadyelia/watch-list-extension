@@ -3,7 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import { Button, TextField, ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
+import { Button, TextField, FormControl, InputLabel, Select, MenuItem, ListItemIcon, ListItemText } from "@mui/material";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import CategorySelect from "./categorySelect";
@@ -100,23 +100,32 @@ const ListItemForm = (props) => {
         </div>
 
         <div className="form-actions">
-          <ToggleButtonGroup
-            value={itemType}
-            exclusive
-            onChange={(_, newType) => {
-              if (newType !== null) setItemType(newType);
-            }}
-            aria-label="Item type"
-            size="small"
-          >
-            {ITEM_TYPES.map(({ value, label, Icon }) => (
-              <ToggleButton key={value} value={value} aria-label={label}>
-                <Tooltip title={label}>
-                  <Icon fontSize="small" />
-                </Tooltip>
-              </ToggleButton>
-            ))}
-          </ToggleButtonGroup>
+          <FormControl size="small" sx={{ width: 120 }}>
+            <InputLabel>Type</InputLabel>
+            <Select
+              value={itemType}
+              onChange={(e) => setItemType(e.target.value)}
+              label="Type"
+              renderValue={(selected) => {
+                const selectedType = ITEM_TYPES.find(t => t.value === selected);
+                return (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    {selectedType && <selectedType.Icon fontSize="small" />}
+                    <span>{selectedType?.label}</span>
+                  </div>
+                );
+              }}
+            >
+              {ITEM_TYPES.map(({ value, label, Icon }) => (
+                <MenuItem key={value} value={value}>
+                  <ListItemIcon>
+                    <Icon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary={label} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           <div className="form-actions-right">
             {isEditing && (

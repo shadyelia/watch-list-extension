@@ -8,6 +8,7 @@ import SearchBar from "./components/searchBar";
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState([]);
   const [items, setItems] = useState([]);
   const [editingItemId, setEditingItemId] = useState(null);
 
@@ -15,7 +16,10 @@ function App() {
     const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategories.length === 0 || 
       (item.categories && item.categories.some(c => selectedCategories.includes(c)));
-    return matchesSearch && matchesCategory;
+    const matchesType = selectedTypes.length === 0 || 
+      selectedTypes.includes(item.itemType) || 
+      (selectedTypes.includes('none') && !item.itemType);
+    return matchesSearch && matchesCategory && matchesType;
   });
 
   const editItem = items.find((item) => item.id === editingItemId) ?? null;
@@ -96,6 +100,8 @@ function App() {
         setSearchTerm={setSearchTerm} 
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
+        selectedTypes={selectedTypes}
+        setSelectedTypes={setSelectedTypes}
       />
       <Listing
         items={filteredItems}

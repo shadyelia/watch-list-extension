@@ -14,6 +14,7 @@ Your data is stored securely using Chrome Storage and **never leaves your device
 ### v1.2.0
 - Added categories functionality.
 - Copy on click the name of the item.
+- Update searching functionality.
 
 ---
 

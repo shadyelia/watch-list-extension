@@ -7,6 +7,7 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AnimationIcon from '@mui/icons-material/Animation';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import BloodtypeIcon from '@mui/icons-material/Bloodtype';
 
 export const CATEGORIES = [
   { value: "action", label: "Action", Icon: SportsMartialArtsIcon },
@@ -16,6 +17,7 @@ export const CATEGORIES = [
   { value: "romance", label: "Romance", Icon: FavoriteIcon },
   { value: "animation", label: "Animation", Icon: AnimationIcon },
   { value: "documentary", label: "Documentary", Icon: MenuBookIcon },
+  { value: "horror", label: "Horror", Icon: BloodtypeIcon },
 ];
 
 const CategorySelect = ({ selectedCategories, onChange, label = "Categories", size = "medium", sx = {} }) => {
