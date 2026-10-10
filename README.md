@@ -8,8 +8,12 @@ Your data is stored securely using Chrome Storage and **never leaves your device
 ## 📝 Changelog
 
 ### v1.1.0
-- Updated the UI
-- Added edit functionality
+- Updated the UI.
+- Added edit functionality.
+
+### v1.2.0
+- Added categories functionality.
+- Copy on click the name of the item.
 
 ---
 
