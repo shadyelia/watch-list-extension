@@ -1,10 +1,11 @@
 import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import CategorySelect from "./categorySelect";
 
 const SearchBar = (props) => {
-    const { searchTerm, setSearchTerm } = props;
+    const { searchTerm, setSearchTerm, selectedCategories, setSelectedCategories } = props;
     return (
-        <div className="search-bar">
+        <div className="search-bar" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
             <TextField
                 variant="outlined"
                 placeholder="Search..."
@@ -17,6 +18,15 @@ const SearchBar = (props) => {
                         </InputAdornment>
                     ),
                 }}
+                sx={{ flex: 1 }}
+                size="small"
+            />
+            <CategorySelect 
+              selectedCategories={selectedCategories} 
+              onChange={setSelectedCategories} 
+              label="Categories"
+              size="small"
+              sx={{ width: 140, minWidth: 140 }}
             />
         </div>
     )

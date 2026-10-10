@@ -6,6 +6,7 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Button, TextField, ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import CategorySelect from "./categorySelect";
 
 /**
  * ITEM_TYPES – the three supported content types.
@@ -33,12 +34,14 @@ const ListItemForm = (props) => {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [itemType, setItemType] = useState("none");
+  const [categories, setCategories] = useState([]);
 
   // Sync controlled fields whenever the editItem changes
   useEffect(() => {
     setName(editItem?.name ?? "");
     setLink(editItem?.link ?? "");
     setItemType(editItem?.itemType ?? "none");
+    setCategories(editItem?.categories ?? []);
   }, [editItem]);
 
   const handleSubmit = (e) => {
@@ -46,12 +49,13 @@ const ListItemForm = (props) => {
     if (!name) return;
 
     if (isEditing) {
-      onEdit({ ...editItem, name, link, itemType });
+      onEdit({ ...editItem, name, link, itemType, categories });
     } else {
-      onAdd({ id: uuidv4(), name, link, itemType, checked: false });
+      onAdd({ id: uuidv4(), name, link, itemType, checked: false, categories });
       setName("");
       setLink("");
       setItemType("none");
+      setCategories([]);
     }
   };
 
@@ -59,6 +63,7 @@ const ListItemForm = (props) => {
     setName("");
     setLink("");
     setItemType("none");
+    setCategories([]);
     onCancelEdit?.();
   };
 
@@ -83,6 +88,14 @@ const ListItemForm = (props) => {
             value={link}
             onChange={(e) => setLink(e.target.value)}
             label={isEditing ? "Edit Link" : "Link"}
+          />
+        </div>
+        <div className="form-row">
+          <CategorySelect 
+            selectedCategories={categories}
+            onChange={setCategories}
+            size="small"
+            sx={{ flex: 1 }}
           />
         </div>
 

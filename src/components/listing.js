@@ -3,8 +3,37 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { IconButton, Checkbox, Tooltip, Snackbar } from "@mui/material";
+import { IconButton, Checkbox, Tooltip, Snackbar, Box, Typography } from "@mui/material";
 import { ITEM_TYPES } from "./listItemForm";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import { CATEGORIES } from "./categorySelect";
+
+const CategoriesDisplay = ({ categories = [] }) => {
+  if (!categories || !categories.length) return null;
+  
+  const categoryObjects = categories.map(c => CATEGORIES.find(cat => cat.value === c)).filter(Boolean);
+  
+  return (
+    <Tooltip 
+      title={
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, p: 0.5 }}>
+          {categoryObjects.map(c => (
+            <Box key={c.value} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <c.Icon fontSize="small" />
+              <Typography variant="body2">{c.label}</Typography>
+            </Box>
+          ))}
+        </Box>
+      }
+      placement="top"
+    >
+      <Box sx={{ display: 'inline-flex', alignItems: 'center', ml: 0.5, mr: 0.5, color: '#a78bfa', cursor: 'help' }}>
+        <LocalOfferIcon fontSize="small" sx={{ mr: 0.5, fontSize: '1rem' }} />
+        <Typography variant="caption" sx={{ fontSize: '0.7rem' }}>{categories.length}</Typography>
+      </Box>
+    </Tooltip>
+  );
+};
 
 /**
  * Returns the icon component for a given itemType value.
@@ -67,6 +96,7 @@ const Listing = (props) => {
               </span>
 
               <TypeIcon itemType={item.itemType} />
+              <CategoriesDisplay categories={item.categories} />
 
               {item.link ? (
                 <Tooltip title={item.name} placement="top" disableInteractive>
